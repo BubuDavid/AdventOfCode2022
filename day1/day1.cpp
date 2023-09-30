@@ -34,16 +34,16 @@ int main (int argc, char *argv[]) {
 
 void printVector(std::vector<int> v) {
     for (size_t i = 0; i < v.size(); i++) {
-        // std::cout << v[i] << " ";        
+        std::cout << v[i] << " ";        
     }
-    // std::cout << std::endl;
+    std::cout << std::endl;
 }
 
 // Return the max sum for each subset of candies.
 int part1(std::vector<int> candies) {
     int maxi = 0, suma = 0;
     for (size_t i = 0; i < candies.size(); i++) {
-        if (candies[i] == -1) {
+        if (candies[i] == -1 || i == candies.size() - 1) {
             maxi = std::max(suma, maxi);
             suma = 0;
         }  
