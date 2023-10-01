@@ -68,7 +68,7 @@ int part2(std::vector<int> candies) {
                 insertInHeap(heap, suma);
             } 
             // std::cout << suma << std::endl;
-            printVector(heap);
+            // printVector(heap);
             suma = 0;
         } else suma += candies[i];
     }
