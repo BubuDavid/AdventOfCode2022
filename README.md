@@ -5,3 +5,4 @@ My travel for AoC 2022 to learn different languages.
 |-------|---|-----|--------|
 | day 1 | ✅ | ✅   | ✅      |
 | day 2 | ✅ | ✅    |        |
+| day 3 | ✅ |     |        |

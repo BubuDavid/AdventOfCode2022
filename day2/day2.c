@@ -41,6 +41,9 @@ int main(int argc, char *argv[]) {
 
     // Close the file
     fclose(inputFile);
+    free(line);
+    free(p1);
+    free(p2);
     return 0;
 }
 
