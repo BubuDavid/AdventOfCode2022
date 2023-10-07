@@ -5,8 +5,15 @@
 
 #define LINESIZE 50
 
+struct instructions {
+	int nBlocks;
+	int from; 
+	int to;
+};
+
 char *stripString(char*);
 bool isSpaceString(char*);
+char *appendString(char*, char);
 int lenString(char*);
 int max(int, int);
 
@@ -15,29 +22,56 @@ int main(int argc, char *argv[]) {
 	char *line = (char*)malloc(LINESIZE * sizeof(char));
 	int bSize = 0, iSize = 0;
 	int maxLineSize = 0;
-	bool inst = false;
+	bool isInstruction = false;
 	// Open the file
 	FILE *inputFile = fopen("test_input.txt", "r");
 
 	// Get the file number of lines to our dynamically allocated matrices
 	while (fgets(line, LINESIZE, inputFile)) {
 		if (line[1] == '1') {
-			inst = true;
+			isInstruction = true;
 			continue;
 		}
-		if (!inst) {
+		if (!isInstruction) {
 			bSize++;
 			maxLineSize = max(maxLineSize, lenString(line));
 		}
 		else iSize++;
 	}
 	iSize--;
-	maxLineSize--;
 
-	// Store the data
+	// Define space for data
+	char **queues = (char**)malloc(maxLineSize * sizeof(char*));
+	struct instructions *instrucs = (struct instructions*)malloc(iSize * sizeof(struct instructions));
+	for (int i = 0; i < maxLineSize; i++)
+		queues[i] = (char*)malloc(bSize * sizeof(char));
+	fseek(inputFile, 0, SEEK_SET);
+	isInstruction = false;
+	// Store the data 
+	while (fgets(line, LINESIZE, inputFile)) {
+		if (!isInstruction) {
+			for (int i = 1, counter = 0; i < maxLineSize; i += 4, counter++) {
+				if (!isSpaceString(&line[i])) {
+					queues[counter] = appendString(queues[counter], line[i]);
+				}
+			}
+		} else {
+			
+		}
+	}
 
-	
+	// Freeing the space
+	for (int i = 0; i < maxLineSize; i++)
+		free(queues[i]);
+	free(queues);
+	free(line);
+	fclose(inputFile);
 	return 0;
+}
+
+char *appendString(char *str1, char c) {
+	char *ans;
+	return ans;
 }
 
 char *stripString(char *str) {
