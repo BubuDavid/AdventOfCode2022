@@ -1,3 +1,4 @@
+# Hello
 def part1(candies):
     maxi, suma = 0, 0
     for index, candy in enumerate(candies):
